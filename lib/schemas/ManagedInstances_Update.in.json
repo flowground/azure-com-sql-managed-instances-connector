@@ -1,0 +1,160 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "managedInstanceName": {
+            "required": true,
+            "type": "string"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "An update request for an Azure SQL Database managed instance.",
+            "properties": {
+                "properties": {
+                    "description": "Resource properties.",
+                    "x-ms-client-flatten": true,
+                    "properties": {
+                        "administratorLogin": {
+                            "description": "Administrator username for the managed instance. Can only be specified when the managed instance is being created (and is required for creation).",
+                            "type": "string",
+                            "x-ms-mutability": [
+                                "read",
+                                "create"
+                            ]
+                        },
+                        "administratorLoginPassword": {
+                            "description": "The administrator login password (required for managed instance creation).",
+                            "type": "string",
+                            "x-ms-mutability": [
+                                "create",
+                                "update"
+                            ]
+                        },
+                        "collation": {
+                            "description": "Collation of the managed instance.",
+                            "type": "string",
+                            "x-ms-mutability": [
+                                "read",
+                                "create"
+                            ]
+                        },
+                        "dnsZone": {
+                            "description": "The Dns Zone that the managed instance is in.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "dnsZonePartner": {
+                            "description": "The resource id of another managed instance whose DNS zone this managed instance will share after creation.",
+                            "type": "string",
+                            "x-ms-mutability": [
+                                "create"
+                            ]
+                        },
+                        "fullyQualifiedDomainName": {
+                            "description": "The fully qualified domain name of the managed instance.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "licenseType": {
+                            "description": "The license type. Possible values are 'LicenseIncluded' and 'BasePrice'.",
+                            "type": "string"
+                        },
+                        "proxyOverride": {
+                            "description": "Connection type used for connecting to the instance.",
+                            "enum": [
+                                "Proxy",
+                                "Redirect",
+                                "Default"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": true,
+                                "name": "ManagedInstanceProxyOverride"
+                            }
+                        },
+                        "publicDataEndpointEnabled": {
+                            "description": "Whether or not the public data endpoint is enabled.",
+                            "type": "boolean"
+                        },
+                        "state": {
+                            "description": "The state of the managed instance.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "storageSizeInGB": {
+                            "description": "The maximum storage size in GB.",
+                            "format": "int32",
+                            "type": "integer"
+                        },
+                        "subnetId": {
+                            "description": "Subnet resource ID for the managed instance.",
+                            "type": "string"
+                        },
+                        "timezoneId": {
+                            "description": "Id of the timezone. Allowed values are timezones supported by Windows.\r\nWindows keeps details on supported timezones, including the id, in registry under\r\nKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Time Zones.\r\nYou can get those registry values via SQL Server by querying SELECT name AS timezone_id FROM sys.time_zone_info.\r\nList of Ids can also be obtained by executing [System.TimeZoneInfo]::GetSystemTimeZones() in PowerShell.\r\nAn example of valid timezone id is \"Pacific Standard Time\" or \"W. Europe Standard Time\".",
+                            "type": "string",
+                            "x-ms-mutability": [
+                                "read",
+                                "create"
+                            ]
+                        },
+                        "vCores": {
+                            "description": "The number of VCores.",
+                            "format": "int32",
+                            "type": "integer"
+                        }
+                    },
+                    "type": "object"
+                },
+                "sku": {
+                    "description": "The resource model definition representing SKU",
+                    "properties": {
+                        "capacity": {
+                            "description": "If the SKU supports scale out/in then the capacity integer should be included. If scale out/in is not possible for the resource this may be omitted.",
+                            "format": "int32",
+                            "type": "integer"
+                        },
+                        "family": {
+                            "description": "If the service has different generations of hardware, for the same SKU, then that can be captured here.",
+                            "type": "string"
+                        },
+                        "name": {
+                            "description": "The name of the SKU. Ex - P3. It is typically a letter+number code",
+                            "type": "string"
+                        },
+                        "size": {
+                            "description": "The SKU size. When the name field is the combination of tier and some other value, this would be the standalone code. ",
+                            "type": "string"
+                        },
+                        "tier": {
+                            "description": "This field is required to be implemented by the Resource Provider if the service has more than one tier, but is not required on a PUT.",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "name"
+                    ],
+                    "type": "object"
+                },
+                "tags": {
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Resource tags.",
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}
